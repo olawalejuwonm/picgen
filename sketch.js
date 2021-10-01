@@ -71,6 +71,12 @@ function setup() {
   toolbox.addTool(new ZoomTool());
   toolbox.addTool(new EraserTool());
 
+  if (AppMode) {
+    toolbox.addTool(new NoneTool())
+    toolbox.selectTool("none")
+
+  }
+
   background(255);
 
   if (savedPixels) { // check if user has some existing changes in local storage

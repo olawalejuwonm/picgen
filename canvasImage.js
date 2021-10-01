@@ -25,6 +25,8 @@ class CanvasImage {
         resizeCanvas(img.width, img.height);
         image(img, 0, 0, img.width, img.height);
       });
+
+
       select("#file").input(f => {
         getBase64(f.target.files[0])
         .then((d) => {
@@ -45,6 +47,12 @@ class CanvasImage {
         .catch((e) => {
           alert(e.message)
         })
+      })
+
+      select('#date').input((e) => {
+        // toolbox.selectTool()
+        let datePixel = {x: 476, y: 1005.6666870117188, w: 295, h: 44}
+        console.log(e.target.value)
       })
     }
 

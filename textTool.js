@@ -192,6 +192,7 @@ class TextTool {
   }
 
   MouseReleased() {
+    console.log(this.selectScale)
     if (!this.selectScale.w || !this.selectScale.h) {
       return;
     }
