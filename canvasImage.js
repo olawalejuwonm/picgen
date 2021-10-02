@@ -18,14 +18,33 @@ class CanvasImage {
       });
     }
     if (path == "birthday.html") {
-      AppMode = path;
+      AppMode = select("#AppOpt");
       SaveWithoutAsync = true;
+
+
      
       loadImage("assets/birthday.jpg", (img) => {
         resizeCanvas(img.width, img.height);
         image(img, 0, 0, img.width, img.height);
       });
 
+      let preview = select("#preview")
+      let dC = select("#defaultCanvas0")
+      // dC.hide()
+      preview.mousePressed(()=> {
+        if (preview.html() == "Hide Image") {
+         dC.hide();
+         preview.html("Preview Image")
+
+        }
+
+        else {
+          dC.show();
+          preview.html("Hide Image")
+        }
+       
+
+      })
 
       select("#file").input(f => {
         getBase64(f.target.files[0])
@@ -49,11 +68,29 @@ class CanvasImage {
         })
       })
 
-      select('#date').input((e) => {
-        // toolbox.selectTool()
-        let datePixel = {x: 476, y: 1005.6666870117188, w: 295, h: 44}
-        console.log(e.target.value)
+      let btn1 = select('#date')
+      let btn2 = select('#name')
+      
+      btn1.mousePressed((e) => {
+        if (!toolbox.selectedTool.textMode) {
+          toolbox.selectTool("TextTool")
+          let datePixel = {x: 476, y: 1005.6666870117188, w: 295, h: 44}
+          toolbox.selectedTool.selectScale = datePixel
+          toolbox.selectedTool.mouseReleased()
+        }
+
+      
+        console.log(e)
       })
+    btn2.mousePressed(() => {
+      if (!toolbox.selectedTool.textMode) {
+        toolbox.selectTool("TextTool")
+        let namePixel = {x: 327, y: 937.6666870117188, w: 470, h: 52}
+        toolbox.selectedTool.selectScale = namePixel
+        toolbox.selectedTool.mouseReleased()
+      }
+    })
+
     }
 
     //Canvas Image Set An Image As Background of the canvas.
@@ -82,6 +119,10 @@ class CanvasImage {
     input.attribute("accept", "image/*");
     input.attribute("id", "img");
     input.parent("#initOpt");
+
+    if (AppMode) {
+      input.hide()
+    }
   }
 
   //Apply filter to the image when edit button is pressed

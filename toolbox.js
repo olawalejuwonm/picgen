@@ -90,7 +90,11 @@ function Toolbox() {
 
         //to display information about each tool
         if (select("#info")) {
-          select("#info").html(this.selectedTool.description || "");
+          if (!AppMode) {
+            select("#info").html(this.selectedTool.description || "");
+
+          }
+          
         }
       }
     }

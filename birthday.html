@@ -35,14 +35,17 @@
 
   <body style="background-color: #444">
     <div class="wrapper">
+      <div id="AppOpt">
+        <p>Welcome To The Food Legends Bityhday Picture Generator <br><br>
+          <label>Pick Image</label><input type="file" id="file"/><br>
 
-      <p>Welcome To The Food Legends Bityhday Picture Generator <br><br>
-        <label>Pick Image</label><input type="file" id="file"/><br>
-        <label>Birthday Date</label><input type="text" id="date"/><br>
-        <label>Celebrant Name</label><input type="text" id="name"/><br>
+          <button id="date">Enter Birthday Date</button><br>
+          <button id="name">Enter Celebrant Name</button><br>
 
-
-      </p>
+          <button id="preview">Hide Image</button>
+        </p>
+      </div>
+      
       <div class="box header" style="visibility: hidden;">
         TFL Birthday App
         <button id="Reload">Clear</button>
@@ -53,9 +56,9 @@
 
         <span id="stateMes"></span>
       </div>
-      <div class="box" id="sidebar"></div>
+      <div class="box" id="sidebar" style="visibility: hidden;"></div>
       <div id="content" class="canvas-area"></div>
-      <div class="box component-area" id="initOpt" style="visibility: hidden;">
+      <div class="box component-area" id="initOpt">
         <label for="color">Select Fill Color: </label>
         <input type="color" name="color" id="color" value="#4109DC" />
         <label for="color">Select Stroke Color: </label>
@@ -63,6 +66,7 @@
         <label for="color"> Stroke Weight: </label>
         <input type="number" name="SW" id="SW" value="1" min="1"  max="50"/>
       </div>
+      
       <div class="box options" style="visibility: hidden;">
         <div id="options"></div>
 

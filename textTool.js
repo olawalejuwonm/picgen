@@ -21,6 +21,7 @@ class TextTool {
     this.size;
     this.doneBtn;
     this.imgPos;
+    this.optMode
     this.description =
       "The text Tool can be used by dragging the area to be used for rendering the text on the canvas. After drag an input box (Enter Your Text) to type in your text and an option to change the font Type, font Size will appear. When done writing, click on 'Done' button.";
   }
@@ -61,7 +62,10 @@ class TextTool {
     loadPixels();
     cursor("text"); //set cursor
     if (AppMode) {
-      this.description = ""
+      this.optMode = AppMode
+    }
+    else {
+      this.optMode = Gopt
     }
   }
 
@@ -160,7 +164,10 @@ class TextTool {
     } else {
       this.ReWrite(-3, -3, 5, 5);
 
-      image(this.imgPos, 0, 0, width, height);
+      if (!AppMode) {
+        image(this.imgPos, 0, 0, width, height);
+
+      }
       this.WriteText();
     }
 
@@ -175,24 +182,42 @@ class TextTool {
     if (this.sizeBtn) {
       this.sizeBtn.remove();
     }
-
     if (this.doneBtn) {
       this.doneBtn.remove();
+      
     }
+   
     this.textMode = false;
     this.textBtn = null;
     this.sel = null;
     this.sizeBtn = null;
     this.doneBtn = null;
     this.selectScale = { x: -mouseX, y: -mouseY, w: -width, h: -height };
-    loadPixels(); //user is done typing save the pixel
-    helpers.getPixels();
 
-    helpers.awaitSave();
+   
+
+    if (AppMode) {
+      toolbox.selectTool("none")
+    }
+    loadPixels(); //user is done typing save the pixel
+
+    if (SaveWithoutAsync) {
+
+    }
+  
+     else {
+      helpers.getPixels();
+
+      helpers.awaitSave();
+     }
+
+    
+    
   }
 
   MouseReleased() {
     console.log(this.selectScale)
+
     if (!this.selectScale.w || !this.selectScale.h) {
       return;
     }
@@ -203,8 +228,15 @@ class TextTool {
       this.textBtn = createInput("", "text");
       this.textBtn.id("textToolInput");
       this.textBtn.elt.placeholder = "Enter Text Here";
+      this.textBtn.elt.value = this.text
       scale(1);
-      this.textBtn.position(this.selectScale.x, this.selectScale.y);
+      if (AppMode) {
+        this.textBtn.parent(AppMode)
+      }
+      else {
+        this.textBtn.position(this.selectScale.x, this.selectScale.y);
+
+      }
       this.textMode = true;
       const inpF = () => {
         this.text = this.textBtn.value();
@@ -226,7 +258,7 @@ class TextTool {
           this.ReWrite(0, 0, 0, 0);
         });
 
-        this.sel.parent(Gopt);
+        this.sel.parent(this.optMode);
       }
 
       if (!this.sizeBtn) {
@@ -241,7 +273,7 @@ class TextTool {
           this.ReWrite(0, 0, 0, 0);
         });
 
-        this.sizeBtn.parent(Gopt);
+        this.sizeBtn.parent(this.optMode);
       }
 
       if (!this.doneBtn) {
@@ -252,7 +284,7 @@ class TextTool {
           }
         });
 
-        this.doneBtn.parent(Gopt);
+        this.doneBtn.parent(this.optMode);
       }
     }
   }
