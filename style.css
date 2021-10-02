@@ -8,6 +8,11 @@ html, body {
 	overflow-y: scroll;
 }
 
+.hide {
+	position: absolute;
+	top: -9999px;
+	left: -9999px;
+ }
 #content {
 	grid-area: content;
 }

@@ -23,13 +23,15 @@ function preload() {
     TMS: "Trebuchet MS",
     Verdana: "Verdana",
   };
-
+  fonts.OpenSans = loadFont("assets/fonts/OpenSans-Regular.ttf");
+  fonts.Aqum = loadFont("assets/fonts/Aqum2Classic.otf");
 }
 
 let SaveWithoutAsync = false
 
 
 let noHistory = false;
+
 function setup() {
   //create a canvas to fill the content div from index.html
   //get values needed for the application from localStorage
@@ -51,9 +53,9 @@ function setup() {
   //create a toolbox for storing the tools
   toolbox = new Toolbox();
   //create helper functions and the colour palette and canvasImage
+  imageB = new CanvasImage();
   helpers = new HelperFunctions();
   colourP = new ColourPalette();
-  imageB = new CanvasImage();
 
  
 

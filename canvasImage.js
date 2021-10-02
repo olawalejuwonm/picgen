@@ -14,83 +14,86 @@ class CanvasImage {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = () => resolve(reader.result);
-        reader.onerror = error => reject(error);
+        reader.onerror = (error) => reject(error);
       });
     }
     if (path == "birthday.html") {
       AppMode = select("#AppOpt");
+      select("#saveApp").mousePressed(()=> {
+        saveCanvas(path.split(".")[0] + ".png")
+      })
       SaveWithoutAsync = true;
 
-
-     
       loadImage("assets/birthday.jpg", (img) => {
         resizeCanvas(img.width, img.height);
         image(img, 0, 0, img.width, img.height);
       });
 
-      let preview = select("#preview")
-      let dC = select("#defaultCanvas0")
-      // dC.hide()
-      preview.mousePressed(()=> {
+      let preview = select("#preview");
+      let dC = select("#content");
+      preview.mousePressed(() => {
         if (preview.html() == "Hide Image") {
-         dC.hide();
-         preview.html("Preview Image")
-
+          AppMode.removeAttribute("style")
+          dC.attribute(
+            "style",
+            `position: absolute;
+         top: -9999px;
+         left: -9999px;`
+          );
+          preview.html("Preview Image");
+        } else {
+          AppMode.attribute("style", "background-color: #444;color:white")
+          dC.removeAttribute("style");
+          preview.html("Hide Image");
         }
+      });
 
-        else {
-          dC.show();
-          preview.html("Hide Image")
-        }
-       
-
-      })
-
-      select("#file").input(f => {
+      select("#file").input((f) => {
         getBase64(f.target.files[0])
-        .then((d) => {
-          loadImage(d, (img) => {
-            let shape = createGraphics(img.width, img.height);
-            // img.resize(width, height)
-            // shape.ellipse(535, 540,615,596)
-            shape.ellipse(img.width/2, img.height/2,img.width,img.height)
+          .then((d) => {
+            loadImage(d, (img) => {
+              let shape = createGraphics(img.width, img.height);
+              // img.resize(width, height)
+              // shape.ellipse(535, 540,615,596)
+              shape.ellipse(
+                img.width / 2,
+                img.height / 2,
+                img.width,
+                img.height
+              );
 
-            img.mask(shape)
+              img.mask(shape);
 
-            // image(img, 535, 540,615,596)
-            image(img, 233, 245,615,596)
-
-
+              // image(img, 535, 540,615,596)
+              image(img, 233, 245, 615, 596);
+            });
           })
-        })
-        .catch((e) => {
-          alert(e.message)
-        })
-      })
+          .catch((e) => {
+            alert(e.message);
+          });
+      });
 
-      let btn1 = select('#date')
-      let btn2 = select('#name')
-      
+      let btn1 = select("#date");
+      let btn2 = select("#name");
+
       btn1.mousePressed((e) => {
         if (!toolbox.selectedTool.textMode) {
-          toolbox.selectTool("TextTool")
-          let datePixel = {x: 476, y: 1005.6666870117188, w: 295, h: 44}
-          toolbox.selectedTool.selectScale = datePixel
-          toolbox.selectedTool.mouseReleased()
+          toolbox.selectTool("TextTool");
+          let datePixel = { x: 476, y: 1005.6666870117188, w: 295, h: 44 };
+          toolbox.selectedTool.selectScale = datePixel;
+          toolbox.selectedTool.mouseReleased();
         }
 
-      
-        console.log(e)
-      })
-    btn2.mousePressed(() => {
-      if (!toolbox.selectedTool.textMode) {
-        toolbox.selectTool("TextTool")
-        let namePixel = {x: 327, y: 937.6666870117188, w: 470, h: 52}
-        toolbox.selectedTool.selectScale = namePixel
-        toolbox.selectedTool.mouseReleased()
-      }
-    })
-
+        console.log(e);
+      });
+      btn2.mousePressed(() => {
+        if (!toolbox.selectedTool.textMode) {
+          toolbox.selectTool("TextTool");
+          let namePixel = { x: 327, y: 937.6666870117188, w: 470, h: 52 };
+          toolbox.selectedTool.selectScale = namePixel;
+          toolbox.selectedTool.mouseReleased();
+        }
+      });
     }
 
     //Canvas Image Set An Image As Background of the canvas.
@@ -121,7 +124,7 @@ class CanvasImage {
     input.parent("#initOpt");
 
     if (AppMode) {
-      input.hide()
+      input.hide();
     }
   }
 

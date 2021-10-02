@@ -198,6 +198,7 @@ class HelperFunctions {
       saveCanvas("myDrawing.png");
     });
 
+
     //event on mouseclick for undo button
     // just like getPixel above
     undobtn.mouseClicked(() => {
