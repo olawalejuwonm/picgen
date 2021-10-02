@@ -228,7 +228,7 @@ class TextTool {
       this.textBtn = createInput("", "text");
       this.textBtn.id("textToolInput");
       this.textBtn.elt.placeholder = "Enter Text Here";
-      this.textBtn.elt.value = this.text
+      // this.textBtn.elt.value = this.text
       scale(1);
       if (AppMode) {
         this.textBtn.parent(AppMode)

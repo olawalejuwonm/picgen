@@ -1,76 +1,76 @@
-html, body {
+html,
+body {
   margin: 0px;
   height: 100%;
 }
 
 #sidebar {
-	grid-area: sidebar;
-	overflow-y: scroll;
+  grid-area: sidebar;
+  overflow-y: scroll;
 }
 
 .hide {
-	position: absolute;
-	top: -9999px;
-	left: -9999px;
- }
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
 #content {
-	grid-area: content;
+  grid-area: content;
 }
 
 .header {
-	grid-area: header;
-	font-family: Helvetica, sans-serif
+  grid-area: header;
+  font-family: Helvetica, sans-serif;
 }
 
-.footer{
+.footer {
   grid-area: footer;
 }
 
-.sideBarItem{
-	max-height: 50px;
-	max-width: 50px;
-	padding:5px;
+.sideBarItem {
+  max-height: 50px;
+  max-width: 50px;
+  padding: 5px;
 }
 
-.sideBarItem img{
-	max-height: 50px;
-	max-Width:50px;
+.sideBarItem img {
+  max-height: 50px;
+  max-width: 50px;
 }
 
-#initOpt{
-	grid-area: colourP;
-	display:flex;
-	flex-direction:grid;
-	flex-flow: wrap;
+#initOpt {
+  grid-area: colourP;
+  display: flex;
+  flex-direction: grid;
+  flex-flow: wrap;
 }
 
-#options{
-	grid-area: options;
-	padding: 0px;
+#options {
+  grid-area: options;
+  padding: 0px;
 }
 
-.colourSwatches{
-	box-sizing: border-box;
-	width: 40px;
-	height: 40px;
-	max-height: 40px;
-	max-width: 40px;
-	margin: 5px;
+.colourSwatches {
+  box-sizing: border-box;
+  width: 40px;
+  height: 40px;
+  max-height: 40px;
+  max-width: 40px;
+  margin: 5px;
 }
 
-
-	.wrapper {
-		display: grid;
-		height: 100%;
-		grid-template-columns: 70px 230px  minmax(500px, 1fr);
-		grid-template-rows: 35px minmax(500px, 1fr) 160px;
-		grid-template-areas:
-               "header header header"
-				"sidebar content content"
-                "colourP colourP options";
-		background-color: #fff;
-		color: #444;
-	}
+.wrapper {
+  display: grid;
+  height: 100%;
+  grid-template-columns: 70px 230px minmax(500px, 1fr);
+  grid-template-rows: 35px minmax(500px, 1fr) 160px;
+  grid-template-areas:
+    "header header header"
+    "sidebar content content"
+    "colourP colourP options";
+  background-color: #fff;
+  color: #444;
+}
 .box {
   background-color: #444;
   color: #fff;
@@ -81,65 +81,62 @@ html, body {
   background-color: #999;
 }
 
-
-
 @media (max-width: 200px) {
-	.horizontal > .component-area {
-		display: none;
-	}
+  .horizontal > .component-area {
+    display: none;
+  }
 }
 @media (max-height: 340px) {
-	.vertical > .component-area {
-		display: none;
-	}
+  .vertical > .component-area {
+    display: none;
+  }
 }
 @media (max-height: 359px) {
-	.vertical > .status-area {
-		display: none !important;
-	}
+  .vertical > .status-area {
+    display: none !important;
+  }
 }
 
 .component-area,
 .tool-window .window-titlebar {
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .tool-window .window-titlebar {
-	direction: ltr;
-	text-align: start;
+  direction: ltr;
+  text-align: start;
 }
 .status-area,
 .component-area {
-	display: flex;
-	flex: 0 0 auto;
+  display: flex;
+  flex: 0 0 auto;
 }
 
 .selection,
 .textbox,
 .helper-layer {
-	z-index: 3;
+  z-index: 3;
 }
 
 .component-area {
-	/* for measuring offsetTop/offsetLeft of component elements */
-	/* (makes it relative to this element) */
-	position: relative;
+  /* for measuring offsetTop/offsetLeft of component elements */
+  /* (makes it relative to this element) */
+  position: relative;
 }
 
-
 .horizontal .component-area {
-	flex-direction: column;
-}	
+  flex-direction: column;
+}
 
 .canvas-area {
-	flex: 1;
-	display: block !important;
-	position: relative;
-	overflow: auto;
-	padding: 3px;
-	direction: ltr/*rtl:ignore*/;
+  flex: 1;
+  display: block !important;
+  position: relative;
+  overflow: auto;
+  padding: 3px;
+  direction: ltr /*rtl:ignore*/;
 }
 /* .p5Canvas {
 	position: absolute;
@@ -149,3 +146,9 @@ html, body {
 /* #textToolInput {
 	background-color: grey;
 } */
+
+input {
+  color: green;
+  background-color: white;
+  border-color: white
+}

@@ -8,7 +8,7 @@ class CanvasImage {
     const getLastItem = (thePath) =>
       thePath.substring(thePath.lastIndexOf("/") + 1);
     let path = getLastItem(window.location.pathname);
-    console.log(window.location, path);
+    // console.log( path, path.length);
     function getBase64(file) {
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -17,7 +17,7 @@ class CanvasImage {
         reader.onerror = (error) => reject(error);
       });
     }
-    if (path == "birthday.html") {
+    if (path.length) {
       AppMode = select("#AppOpt");
       select("#saveApp").mousePressed(()=> {
         saveCanvas(path.split(".")[0] + ".png")
@@ -33,7 +33,7 @@ class CanvasImage {
       let dC = select("#content");
       preview.mousePressed(() => {
         if (preview.html() == "Hide Image") {
-          AppMode.removeAttribute("style")
+          // AppMode.removeAttribute("style")
           dC.attribute(
             "style",
             `position: absolute;
@@ -42,7 +42,7 @@ class CanvasImage {
           );
           preview.html("Preview Image");
         } else {
-          AppMode.attribute("style", "background-color: #444;color:white")
+          // AppMode.attribute("style", "background-color: #444;color:white")
           dC.removeAttribute("style");
           preview.html("Hide Image");
         }
