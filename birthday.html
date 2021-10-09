@@ -32,6 +32,8 @@
 
 
   <link rel="stylesheet" type="text/css" href="style.css" />
+
+
 </head>
 
 <body style="background-color: #444">
@@ -79,6 +81,87 @@
       <div id="info" disabled style="color: paleturquoise"></div>
     </div>
   </div>
+  <script>
+    function getBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = (error) => reject(error);
+      });
+    }
+    const appPic = "assets/birthday.jpg"
+    const preview = new p5.Element(document.getElementById("preview"))
+    const dC = new p5.Element(document.getElementById("content"))
+    const btn1 = new p5.Element(document.getElementById("date"))
+    const btn2 = new p5.Element(document.getElementById("name"))
+
+    const actions = {
+      preview: () => {
+        if (preview.html() == "Hide Image") {
+          // AppMode.removeAttribute("style")
+          dC.attribute(
+            "style",
+            `position: absolute;
+         top: -9999px;
+         left: -9999px;`
+          );
+          preview.html("Preview Image");
+        } else {
+          // let app = document.getElementById("AppBtn").
+          // AppMode.attribute("style", "background-color: #444;color:white")
+          dC.removeAttribute("style");
+          preview.html("Hide Image");
+        }
+      },
+      name: () => {
+        if (!toolbox.selectedTool.textMode) {
+          toolbox.selectTool("TextTool");
+          let namePixel = { x: 327, y: 937.6666870117188, w: 470, h: 52 };
+          toolbox.selectedTool.selectScale = namePixel;
+          toolbox.selectedTool.mouseReleased();
+        }
+      },
+      saveApp: () => {
+        saveCanvas(path.split(".")[0] + ".png")
+
+      },
+      date: () => {
+        if (!toolbox.selectedTool.textMode) {
+          toolbox.selectTool("TextTool");
+          let datePixel = { x: 476, y: 1005.6666870117188, w: 295, h: 44 };
+          toolbox.selectedTool.selectScale = datePixel;
+          toolbox.selectedTool.mouseReleased();
+        }
+
+      },
+      file: (f) => {
+        getBase64(f.target.files[0])
+          .then((d) => {
+            loadImage(d, (img) => {
+              let shape = createGraphics(img.width, img.height);
+              // img.resize(width, height)
+              // shape.ellipse(535, 540,615,596)
+              shape.ellipse(
+                img.width / 2,
+                img.height / 2,
+                img.width,
+                img.height
+              );
+
+              img.mask(shape);
+
+              // image(img, 535, 540,615,596)
+              image(img, 233, 245, 615, 596);
+            });
+          })
+          .catch((e) => {
+            alert(e.message);
+          });
+      }
+    }
+
+  </script>
 </body>
 
 </html>

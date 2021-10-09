@@ -172,7 +172,7 @@ class TextTool {
     }
 
     if (this.textBtn) {
-      this.textBtn.remove();
+      this.textBtn.elt.remove();
     }
 
     if (this.sel) {
@@ -225,7 +225,8 @@ class TextTool {
       updatePixels();
       this.imgPos = get();
 
-      this.textBtn = createInput("", "text");
+      this.textBtn = new p5.Element(document.createElement("textarea"));
+      // console.log(document.createElement("textarea"), createInput("", "text"))
       this.textBtn.id("textToolInput");
       this.textBtn.elt.placeholder = "Enter Text Here";
       // this.textBtn.elt.value = this.text
@@ -262,7 +263,7 @@ class TextTool {
       }
 
       if (!this.sizeBtn) {
-        const initValue = max(20, abs(round(random(this.selectScale.h / 3))));
+        const initValue = max(40, abs(round(random(this.selectScale.h / 3))));
         this.sizeBtn = createInput(initValue, "number");
         textSize(initValue);
 
