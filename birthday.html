@@ -95,7 +95,28 @@
     const dC = new p5.Element(document.getElementById("content"))
     const btn1 = new p5.Element(document.getElementById("date"))
     const btn2 = new p5.Element(document.getElementById("name"))
+    let imgAlert = "Please Upload An Image",
+      date = "Please Enter A Birthday Date",
+      name = "Please Enter Celebrant Name"
 
+    const runCheck = () => {
+      console.log(imgAlert)
+      if (imgAlert) {
+            alert(imgAlert)
+            return true
+          }
+          else if (date) {
+            alert(date)
+            return true
+
+          }
+
+          else if (name) {
+            alert(name)
+            return true
+
+          }
+    }
     const actions = {
       preview: () => {
         if (preview.html() == "Hide Image") {
@@ -110,8 +131,15 @@
         } else {
           // let app = document.getElementById("AppBtn").
           // AppMode.attribute("style", "background-color: #444;color:white")
-          dC.removeAttribute("style");
-          preview.html("Hide Image");
+
+          if (runCheck()) {
+            return;
+          }
+          else {
+            dC.removeAttribute("style");
+            preview.html("Hide Image");
+          }
+
         }
       },
       name: () => {
@@ -120,10 +148,14 @@
           let namePixel = { x: 327, y: 937.6666870117188, w: 470, h: 52 };
           toolbox.selectedTool.selectScale = namePixel;
           toolbox.selectedTool.mouseReleased();
+          name = false
         }
       },
       saveApp: () => {
-        saveCanvas(path.split(".")[0] + ".png")
+        if (runCheck()) {
+            return;
+          }
+        saveCanvas(window.location.pathname.split('/')[1].split('.')[0] + ".png")
 
       },
       date: () => {
@@ -132,6 +164,7 @@
           let datePixel = { x: 476, y: 1005.6666870117188, w: 295, h: 44 };
           toolbox.selectedTool.selectScale = datePixel;
           toolbox.selectedTool.mouseReleased();
+          date = false
         }
 
       },
@@ -153,6 +186,8 @@
 
               // image(img, 535, 540,615,596)
               image(img, 233, 245, 615, 596);
+              imgAlert = false
+              // console.log(img)
             });
           })
           .catch((e) => {
