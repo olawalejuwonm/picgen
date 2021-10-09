@@ -39,6 +39,8 @@ class TextTool {
         this.selectScale.h
       );
 
+      
+
       this.WriteText(); // write the text
     }
     if (this.textMode === false) {
@@ -61,6 +63,7 @@ class TextTool {
   Populate() {
     loadPixels();
     cursor("text"); //set cursor
+    sw = 0;
     if (AppMode) {
       this.optMode = AppMode
     }
@@ -129,6 +132,7 @@ class TextTool {
     //write the text on the canvas
     fill(c);
     stroke(sc);
+    strokeWeight(sw)
 
     textFont(this.fontSelected);
     textWrap(CHAR);
