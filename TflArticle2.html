@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="lib/p5.min.js"></script>
+
+  <script src="sketch.js"></script>
+
+  <!-- add extra scripts below -->
+  <script src="toolbox.js"></script>
+  <script src="colourPalette.js"></script>
+  <script src="helperFunctions.js"></script>
+  <script src="canvasImage.js"></script>
+
+  <script src="freehandTool.js"></script>
+  <script src="lineToTool.js"></script>
+  <script src="mirrorDrawTool.js"></script>
+  <script src="sprayCanTool.js"></script>
+  <script src="eraserTool.js"></script>
+  <script src="rectangleTool.js"></script>
+  <script src="editableShapeTool.js"></script>
+  <script src="polygonTool.js"></script>
+  <script src="bucketFillTool.js"></script>
+  <script src="zoomTool.js"></script>
+  <script src="textTool.js"></script>
+  <script src="algorithms.js"></script>
+  <script src="stampTool.js"></script>
+  <script src="scissorsTool.js"></script>
+  <script src="noneTool.js"></script>
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="style.css" />
+
+
+</head>
+
+<body style="background-color: #444">
+  <div class="wrapper" style="background-color: #444;">
+    <div id="AppOpt" style="color: rgb(255, 255, 255);">
+      <p>Welcome To The Food Legends Birthday Picture Generator</p>
+      <p>
+        <label>Pick Image</label><input type="file" id="file" accept="image/*" /><br><br>
+
+        <button id="date">Enter Birthday Date</button><br><br>
+        <button id="name">Enter Celebrant Name</button><br><br>
+
+        <button id="preview">Preview Image</button><br><br>
+        <button id="saveApp">Save Image</button><br>
+      </p>
+    </div>
+
+    <div class="box header" style="visibility: hidden;">
+      TFL Birthday App
+      <button id="Reload">Clear</button>
+      <button id="saveImageButton">Save Image</button>
+      <button id="undoButton">Undo</button>
+      <button id="redoButton">Redo</button>
+      <button id="History">Layer History</button>
+
+      <span id="stateMes"></span>
+    </div>
+    <div class="box" id="sidebar" style="visibility: hidden;"></div>
+    <div id="content" class="canvas-area" style="position: absolute;
+      top: -9999px;
+      left: -9999px;"></div>
+    <div class="box component-area" id="initOpt">
+      <label for="color">Select Fill Color: </label>
+      <input type="color" name="color" id="color" value="#4109DC" />
+      <label for="color">Select Stroke Color: </label>
+      <input type="color" name="SC" id="SC" value="#7B7342" />
+      <label for="color"> Stroke Weight: </label>
+      <input type="number" name="SW" id="SW" value="1" min="1" max="50" />
+    </div>
+
+    <div class="box options" style="visibility: hidden;">
+      <div id="options"></div>
+
+      <div id="message" style="color: red"></div>
+      <div id="info" disabled style="color: paleturquoise"></div>
+    </div>
+  </div>
+  <script>
+    function getBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = (error) => reject(error);
+      });
+    }
+    const appPic = "assets/Birthday%20Template%202.jpg"
+    const preview = new p5.Element(document.getElementById("preview"))
+    const dC = new p5.Element(document.getElementById("content"))
+    const btn1 = new p5.Element(document.getElementById("date"))
+    const btn2 = new p5.Element(document.getElementById("name"))
+    let imgAlert = "Please Upload An Image",
+      date = "Please Enter A Birthday Date",
+      name = "Please Enter Celebrant Name"
+
+    let runCheck = () => {
+      console.log(imgAlert)
+      if (imgAlert) {
+            alert(imgAlert)
+            return true
+          }
+          else if (date) {
+            alert(date)
+            return true
+
+          }
+
+          else if (name) {
+            alert(name)
+            return true
+
+          }
+    }
+    const actions = {
+      preview: () => {
+        if (preview.html() == "Hide Image") {
+          // AppMode.removeAttribute("style")
+          dC.attribute(
+            "style",
+            `position: absolute;
+         top: -9999px;
+         left: -9999px;`
+          );
+          preview.html("Preview Image");
+        } else {
+          // let app = document.getElementById("AppBtn").
+          // AppMode.attribute("style", "background-color: #444;color:white")
+
+          if (runCheck()) {
+            return;
+          }
+          else {
+            dC.removeAttribute("style");
+            preview.html("Hide Image");
+          }
+
+        }
+      },
+      name: () => {
+        if (!toolbox.selectedTool.textMode) {
+          toolbox.selectTool("TextTool");
+          let namePixel = { x: 327, y: 937.6666870117188, w: 470, h: 52 };
+          toolbox.selectedTool.selectScale = namePixel;
+          toolbox.selectedTool.mouseReleased();
+          name = false
+        }
+      },
+      saveApp: () => {
+        if (runCheck()) {
+            return;
+          }
+        saveCanvas(window.location.pathname.split('/')[1].split('.')[0] + ".png")
+
+      },
+      date: () => {
+        if (!toolbox.selectedTool.textMode) {
+          toolbox.selectTool("TextTool");
+          let datePixel = { x: 476, y: 1005.6666870117188, w: 295, h: 44 };
+          toolbox.selectedTool.selectScale = datePixel;
+          toolbox.selectedTool.mouseReleased();
+          date = false
+        }
+
+      },
+      file: (f) => {
+        getBase64(f.target.files[0])
+          .then((d) => {
+            loadImage(d, (img) => {
+              let shape = createGraphics(img.width, img.height);
+              // img.resize(width, height)
+              // shape.ellipse(535, 540,615,596)
+              shape.ellipse(
+                img.width / 2,
+                img.height / 2,
+                img.width,
+                img.height
+              );
+
+              img.mask(shape);
+
+              // image(img, 535, 540,615,596)
+              image(img, 233, 245, 615, 596);
+              imgAlert = false
+              // console.log(img)
+            });
+          })
+          .catch((e) => {
+            alert(e.message);
+          });
+      }
+    }
+
+  </script>
+</body>
+
+</html>

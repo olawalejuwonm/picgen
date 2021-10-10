@@ -28,7 +28,7 @@ function preload() {
 }
 
 let SaveWithoutAsync = false
-
+let ImgTextBg;
 
 let noHistory = false;
 
