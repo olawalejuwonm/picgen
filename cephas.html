@@ -61,8 +61,7 @@
 
       <span id="stateMes"></span>
     </div>
-    <div class="box" id="sidebar" 
-    >
+    <div class="box" id="sidebar" style="visibility: hidden;">
     </div>
     <div id="content" class="canvas-area" style="position: absolute;
       top: -9999px;
@@ -104,20 +103,20 @@
     let runCheck = () => {
       console.log(imgAlert)
       if (imgAlert) {
-            alert(imgAlert)
-            return true
-          }
-          else if (date) {
-            alert(date)
-            return true
+        alert(imgAlert)
+        return true
+      }
+      else if (date) {
+        alert(date)
+        return true
 
-          }
+      }
 
-          else if (name) {
-            alert(name)
-            return true
+      else if (name) {
+        alert(name)
+        return true
 
-          }
+      }
     }
     const actions = {
       preview: () => {
@@ -155,8 +154,8 @@
       },
       saveApp: () => {
         if (runCheck()) {
-            return;
-          }
+          return;
+        }
         saveCanvas(window.location.pathname.split('/')[1].split('.')[0] + ".png")
 
       },
