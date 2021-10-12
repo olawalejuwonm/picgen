@@ -146,6 +146,7 @@ function keyPressed() {
 
 function MousePressed() {
   // not using mousePressed because it get called outside canvas
+  console.log("x", mouseX, "y", mouseY)
   if (toolbox.selectedTool.hasOwnProperty("mousePressed")) {
     toolbox.selectedTool.mousePressed();
   }

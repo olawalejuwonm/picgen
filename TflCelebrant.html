@@ -102,20 +102,20 @@
     let runCheck = () => {
       console.log(imgAlert)
       if (imgAlert) {
-            alert(imgAlert)
-            return true
-          }
-          else if (date) {
-            alert(date)
-            return true
+        alert(imgAlert)
+        return true
+      }
+      else if (date) {
+        alert(date)
+        return true
 
-          }
+      }
 
-          else if (name) {
-            alert(name)
-            return true
+      else if (name) {
+        alert(name)
+        return true
 
-          }
+      }
     }
     const actions = {
       preview: () => {
@@ -153,8 +153,8 @@
       },
       saveApp: () => {
         if (runCheck()) {
-            return;
-          }
+          return;
+        }
         saveCanvas(window.location.pathname.split('/')[1].split('.')[0] + ".png")
 
       },
@@ -175,17 +175,20 @@
               let shape = createGraphics(img.width, img.height);
               // img.resize(width, height)
               // shape.ellipse(535, 540,615,596)
-              shape.ellipse(
-                img.width / 2,
-                img.height / 2,
-                img.width,
-                img.height
-              );
+              // shape.beginShape(TRIANGLE_FAN);
+              // shape.vertex(57.5, 50);
+              // shape.vertex(57.5, 15);
+              // shape.vertex(92, 50);
+              // shape.vertex(57.5, 85);
+              // shape.vertex(22, 50);
+              // shape.vertex(57.5, 15);
+              // shape.endShape();
 
-              img.mask(shape);
+              // img.resize(176, 1538)
+              // img.mask(shape);
 
               // image(img, 535, 540,615,596)
-              image(img, 233, 245, 615, 596);
+              image(img, 1371, 451, 176, 1538);
               imgAlert = false
               // console.log(img)
             });
