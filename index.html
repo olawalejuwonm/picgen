@@ -9,8 +9,18 @@
 <body>
     <i>Redirecting......<i>
     <script>
+        if (window.location.href.includes("index.html")) {
+            const myPath = window.location.href.split("index.html")[0];
+            window.location.assign(myPath + '/devfest.html')
+
+        }
+
+        else {
+            window.location.assign(window.location.href + '/index.html')
+
+        }
+        
         console.log(window.location)
-        // window.location.assign(window.location.origin + '/devfest.html')
 
     </script>
 </body>
