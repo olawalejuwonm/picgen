@@ -69,7 +69,7 @@
       left: -9999px;"></div>
     <div class="box component-area" id="initOpt">
       <label for="color">Select Fill Color: </label>
-      <input type="color" name="color" id="color" value="#4109DC" />
+      <input type="color" name="color" id="color" value="#9EFFF4" />
       <label for="color">Select Stroke Color: </label>
       <input type="color" name="SC" id="SC" value="#7B7342" />
       <label for="color"> Stroke Weight: </label>
@@ -82,6 +82,7 @@
       <div id="message" style="color: red"></div>
       <div id="info" disabled style="color: paleturquoise"></div>
     </div>
+    <a href="https://github.com/olawalejuwonm/picgen"><img  src="./assets/os.jpg"/></a>
   </div>
   <script>
     function getBase64(file) {
@@ -93,13 +94,14 @@
       });
     }
     const appPic = "assets/devfest.jpg"
-    const imgsizepx = [66, 246, 417, 422]
+    const imgsizepx = [66, 246, 419, 422]
     const preview = new p5.Element(document.getElementById("preview"))
     const dC = new p5.Element(document.getElementById("content"))
     const btn2 = new p5.Element(document.getElementById("name"))
     let imgAlert = "Please Upload An Image",
        name = "Please Enter Celebrant Name"
-
+    ImgTextBg = "#2177DE"
+    c = "#9EFFF4"
     let runCheck = () => {
       console.log(imgAlert)
       if (imgAlert) {

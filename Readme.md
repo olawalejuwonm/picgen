@@ -1,14 +1,10 @@
+# Flier / Avatar / Event Picture Generator
 
+The project is designed for generating picture for any kind of event / occassion.
+Codebase In P5js
 
-# Todo
-- Cursor Image
-- Add info about each tool
+> > USE CASES
 
-- no console
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
-https://en.wikipedia.org/wiki/Flood_fill
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
-window location 
-async
-window confirm
-local storage, p5js
+GDG OGBOMOSO DEVELOPER FESTIVAL - https://olawalejuwonm.github.io/picgen/devfest
+
+#### CONTRIBUTION WELCOME

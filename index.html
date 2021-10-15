@@ -1,67 +1,16 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <script src="lib/p5.min.js"></script>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <i>Redirecting......<i>
+    <script>
+        window.location.assign(window.location.origin + '/devfest.html')
 
-    <script src="sketch.js"></script>
-
-    <!-- add extra scripts below -->
-    <script src="toolbox.js"></script>
-    <script src="colourPalette.js"></script>
-    <script src="helperFunctions.js"></script>
-    <script src="canvasImage.js"></script>
-
-    <script src="freehandTool.js"></script>
-    <script src="lineToTool.js"></script>
-    <script src="mirrorDrawTool.js"></script>
-    <script src="sprayCanTool.js"></script>
-    <script src="eraserTool.js"></script>
-    <script src="rectangleTool.js"></script>
-    <script src="editableShapeTool.js"></script>
-    <script src="polygonTool.js"></script>
-    <script src="bucketFillTool.js"></script>
-    <script src="zoomTool.js"></script>
-    <script src="textTool.js"></script>
-    <script src="algorithms.js"></script>
-    <script src="stampTool.js"></script>
-    <script src="scissorsTool.js"></script>
-    <script src="noneTool.js"></script>
-
-
-
-    <link rel="stylesheet" type="text/css" href="style.css" />
-  </head>
-
-  <body style="background-color: #444">
-    <a href="birthday.html" style="background-color: aliceblue;">Create Birthday Image</a>
-    <div class="wrapper">
-      <div class="box header">
-        Drawing App
-        <a href="mailto:0lawalejuwon@gmail.com">Contact Me</a>
-        <button id="Reload">Clear</button>
-        <button id="saveImageButton">Save Image</button>
-        <button id="undoButton">Undo</button>
-        <button id="redoButton">Redo</button>
-        <button id="History">Layer History</button>
-
-        <span id="stateMes"></span>
-      </div>
-      <div class="box" id="sidebar"></div>
-      <div id="content" class="canvas-area"></div>
-      <div class="box component-area" id="initOpt">
-        <label for="color">Select Fill Color: </label>
-        <input type="color" name="color" id="color" value="#4109DC" />
-        <label for="color">Select Stroke Color: </label>
-        <input type="color" name="SC" id="SC" value="#7B7342" />
-        <label for="color"> Stroke Weight: </label>
-        <input type="number" name="SW" id="SW" value="1" min="1"  max="50"/>
-      </div>
-      <div class="box options">
-        <div id="options"></div>
-
-        <div id="message" style="color: red"></div>
-        <div id="info" disabled style="color: paleturquoise"></div>
-      </div>
-    </div>
-  </body>
+    </script>
+</body>
 </html>

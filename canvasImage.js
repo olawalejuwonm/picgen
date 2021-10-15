@@ -10,7 +10,9 @@ class CanvasImage {
     let path = getLastItem(window.location.pathname);
     console.log( path, path.length, "hey path",  );
 
-    if (path.length && path != "index.html" ) {
+    const notApp = ["index", "index.html", "pic", "pic.html"]
+
+    if ((path.length && !notApp.includes(path)) ) {
       AppMode = select("#AppOpt");
       SaveWithoutAsync = true;
 
