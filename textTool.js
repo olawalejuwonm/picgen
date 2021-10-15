@@ -32,6 +32,7 @@ class TextTool {
       //draw text captioned size with a rectangle
       noFill();
       stroke(100);
+      strokeWeight(1);
       rect(
         this.selectScale.x,
         this.selectScale.y,
@@ -48,6 +49,7 @@ class TextTool {
       if (mouseIsPressed && mouseX > 5 && mouseY < height - 10) {
         noFill();
         stroke(0);
+        strokeWeight(1);
         rect(
           this.selectScale.x,
           this.selectScale.y,
@@ -128,6 +130,7 @@ class TextTool {
 
   WriteText() {
     //write the text on the canvas
+    sw = 0;
     fill(c);
     stroke(sc);
     strokeWeight(sw);
@@ -208,10 +211,15 @@ class TextTool {
 
       helpers.awaitSave();
     }
+
+    sw = 1;
   }
 
   MouseReleased() {
     console.log(this.selectScale);
+
+    strokeWeight(sw);
+    stroke(0);
 
     if (!this.selectScale.w || !this.selectScale.h) {
       return;
@@ -220,17 +228,21 @@ class TextTool {
       updatePixels();
       this.imgPos = get();
 
-      this.textBtn = new p5.Element(document.createElement("textarea"));
       // console.log(document.createElement("textarea"), createInput("", "text"))
-      this.textBtn.id("textToolInput");
-      this.textBtn.elt.placeholder = "Enter Text Here";
+
       // this.textBtn.elt.value = this.text
       scale(1);
       if (AppMode) {
+        this.textBtn = new p5.Element(document.createElement("textarea"));
+
         this.textBtn.parent(AppMode);
       } else {
+        this.textBtn = createInput("", "text");
+        console.log(AppMode, "hey appmode");
         this.textBtn.position(this.selectScale.x, this.selectScale.y);
       }
+      this.textBtn.id("textToolInput");
+      this.textBtn.elt.placeholder = "Enter Text Here";
       this.textMode = true;
       const inpF = () => {
         this.text = this.textBtn.value();

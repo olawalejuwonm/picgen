@@ -8,9 +8,9 @@ class CanvasImage {
     const getLastItem = (thePath) =>
       thePath.substring(thePath.lastIndexOf("/") + 1);
     let path = getLastItem(window.location.pathname);
-    // console.log( path, path.length);
+    console.log( path, path.length, "hey path",  );
 
-    if (path.length) {
+    if (path.length && path != "index.html" ) {
       AppMode = select("#AppOpt");
       SaveWithoutAsync = true;
 
